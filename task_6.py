@@ -114,7 +114,7 @@ class Sheep:
             wool += taken_wool
             print(name, 'дал(а)', str(wool), 'кг шерсти')
         else:
-            print(name, 'в этом месяце больше не стричь, и так животное уже лысое.')
+            print(name, '- в этом месяце больше не стричь, и так животное уже лысое.')
 
     def identify_sound (self, given_sound):
          name = self.name
@@ -258,7 +258,7 @@ class Ducks:
 
 
 goose1 = Geese('Серый', 'm',  3)
-goose2 = Geese('Белый', 'f',  4)
+goose2 = Geese('Белая', 'f',  4)
 cow1 = Cows('Манька', 'f',  800)
 cow2 =Cows('Бычок', 'm', 1100)
 sheep1 = Sheep('Барашек', 100)
@@ -274,10 +274,43 @@ goose1.feed(0.4)
 goose2.feed(0.5)
 goose1.identify_sound('га-га-га')
 goose2.identify_sound('кря')
+goose1.take_eggs(1)
+goose2.take_eggs(0)
 
+cow1.feed(4)
+cow2.feed(6)
+cow1.identify_sound('му-му-му')
+cow2.identify_sound('ббрр')
+cow1.milk(15)
+cow2.milk(0)
 
+sheep1.feed(1)
+sheep2.feed(3)
+sheep1.identify_sound('бе-бе-бе')
+sheep2.identify_sound('хрю')
+sheep1.cut_wool(11)
+sheep2.cut_wool(8)
 
+hen1.feed(0.4)
+hen2.feed(0.5)
+hen1.identify_sound('куд-куд-кудах')
+hen2.identify_sound('кря')
+hen1.take_eggs(1)
+hen2.take_eggs(0)
 
+goat1.feed(4)
+goat2.feed(2)
+goat1.identify_sound('ме-ме-ме')
+goat2.identify_sound('пшшшш')
+goat1.milk(5)
+goat2.milk(4)
+
+duck1.feed(0.4)
+duck2.feed(0.5)
+duck1.identify_sound('га-га-га')
+duck2.identify_sound('кря-кря-кря')
+duck1.take_eggs(1)
+duck2.take_eggs(0)
 
 
 
