@@ -1,7 +1,9 @@
 
 class Geese:
+    animal_list = []
 
     def __init__(self, name, sex, weight, sound='га-га-га', animal='гусь', daily_eggs_benefit=1, daily_norm_food=0.4):
+        Geese.animal_list.append(self)
         self.name = name
         self.sex = sex
         self.weight = weight
@@ -9,6 +11,7 @@ class Geese:
         self.animal = animal
         self.daily_eggs_benefit = daily_eggs_benefit
         self.daily_norm_food = daily_norm_food
+        Geese.animal_list.append(self)
 
     def feed(self, given_food):
          name = self.name
@@ -44,8 +47,10 @@ class Geese:
 
 
 class Cows:
+    animal_list = []
 
     def __init__(self, name, sex, weight, sound='му-му-му', animal='корова', daily_milk_benefit=15, daily_norm_food=5):
+        Cows.animal_list.append(self)
         self.name = name
         self.sex = sex
         self.weight = weight
@@ -88,8 +93,10 @@ class Cows:
 
 
 class Sheep:
+    animal_list = []
 
     def __init__(self, name, weight, sound='бе-бе-бе', animal='овца', month_wool_benefit=10, daily_norm_food=2):
+        Sheep.animal_list.append(self)
         self.name = name
         self.weight = weight
         self.sound = sound
@@ -127,8 +134,11 @@ class Sheep:
 
 
 class Hens():
+    animal_list = []
 
-    def __init__(self, name, sex, weight, sound='куд-куд-кудах', animal='курица', daily_eggs_benefit=1, daily_norm_food=0.4):
+    def __init__(self, name, sex, weight, sound='куд-куд-кудах', animal='курица', daily_eggs_benefit=1,
+                 daily_norm_food=0.4):
+        Hens.animal_list.append(self)
         self.name = name
         self.sex = sex
         self.weight = weight
@@ -171,8 +181,10 @@ class Hens():
 
 
 class Goats:
+    animal_list = []
 
     def __init__(self, name, sex, weight, sound='ме-ме-ме', animal='коза', daily_milk_benefit=5, daily_norm_food=2):
+        Goats.animal_list.append(self)
         self.name = name
         self.sex = sex
         self.weight = weight
@@ -214,8 +226,11 @@ class Goats:
              print('Возможно, так говорил Заратустра, но не коза.')
 
 class Ducks:
+    animal_list = []
 
-    def __init__(self, name, sex, weight, sound='кря-кря-кря', animal='утка', daily_eggs_benefit=1, daily_norm_food=0.4):
+    def __init__(self, name, sex, weight, sound='кря-кря-кря', animal='утка', daily_eggs_benefit=1,
+                 daily_norm_food=0.4):
+         Ducks.animal_list.append(self)
          self.name = name
          self.sex = sex
          self.weight = weight
@@ -268,7 +283,7 @@ hen2 = Hens('Кукареку', 'm', 5)
 goat1 = Goats('Рога', 'm', 110)
 goat2 = Goats('Копыта', 'f', 100)
 duck1 = Ducks('Кряква', 'f', 3)
-duck2 = Ducks('Дональд', 'm', 3)
+duck2 = Ducks('Дональд', 'm', 7)
 
 goose1.feed(0.4)
 goose2.feed(0.5)
@@ -312,6 +327,65 @@ duck2.identify_sound('кря-кря-кря')
 duck1.take_eggs(1)
 duck2.take_eggs(0)
 
+weight_geese = sum((x.weight for x in Geese.animal_list))
+print('Общий вес всех гусей - ', weight_geese, 'кг')
+
+max_weight = max((x.weight for x in Geese.animal_list))
+
+for x in Geese.animal_list:
+    if x.weight == max_weight:
+        print('Самый тяжелый гусь - ', x.name)
+        break
+
+weight_cows = sum((x.weight for x in Cows.animal_list))
+print('Общий вес всех коров - ', weight_cows, 'кг')
+
+max_weight = max((x.weight for x in Cows.animal_list))
+
+for x in Cows.animal_list:
+    if x.weight == max_weight:
+        print('Самая тяжелая корова - ', x.name)
+        break
+
+weight_sheep = sum((x.weight for x in Sheep.animal_list))
+print('Общий вес всех овец - ', weight_sheep, 'кг')
+
+max_weight = max((x.weight for x in Sheep.animal_list))
+
+for x in Sheep.animal_list:
+    if x.weight == max_weight:
+        print('Самая тяжелая овца - ', x.name)
+        break
+
+weight_hens = sum((x.weight for x in Hens.animal_list))
+print('Общий вес всех кур - ', weight_hens, 'кг')
+
+max_weight = max((x.weight for x in Hens.animal_list))
+
+for x in Hens.animal_list:
+    if x.weight == max_weight:
+        print('Самая тяжелая курица - ', x.name)
+        break
+
+weight_goats = sum((x.weight for x in Goats.animal_list))
+print('Общий вес всех коз - ', weight_goats, 'кг')
+
+max_weight = max((x.weight for x in Goats.animal_list))
+
+for x in Goats.animal_list:
+    if x.weight == max_weight:
+        print('Самая тяжелая коза - ', x.name)
+        break
+
+weight_ducks = sum((x.weight for x in Ducks.animal_list))
+print('Общий вес всех уток - ', weight_ducks, 'кг')
+
+max_weight = max((x.weight for x in Ducks.animal_list))
+
+for x in Ducks.animal_list:
+    if x.weight == max_weight:
+        print('Самая тяжелая утка - ', x.name)
+        break
 
 
 
