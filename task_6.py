@@ -1,5 +1,5 @@
+
 class Geese:
-    pass
 
     def __init__(self, name, sex, weight, sound='га-га-га', animal='гусь', daily_eggs_benefit=1, daily_norm_food=0.4):
         self.name = name
@@ -19,7 +19,6 @@ class Geese:
          else:
              print(name, 'не хочет переедать. Животное сегодня больше не кормить.')
 
-
     def take_eggs(self, taken_eggs):
         name = self.name
         sex = self.sex
@@ -41,15 +40,10 @@ class Geese:
          if given_sound == sound:
              print(sound, ' - это', animal)
          else:
-             print('Возможно, так говорил Заратустра, но не животные на ферме.')
-
-goose1 = Geese('Серый', 'm', 3)
-goose1.identify_sound('ура')
-
+             print('Возможно, так говорил Заратустра, но не гусь.')
 
 
 class Cows:
-    pass
 
     def __init__(self, name, sex, weight, sound='му-му-му', animal='корова', daily_milk_benefit=15, daily_norm_food=5):
         self.name = name
@@ -69,7 +63,6 @@ class Cows:
          else:
              print(name, 'не хочет переедать. Животное сегодня больше не кормить.')
 
-
     def milk(self, taken_milk):
         name = self.name
         sex = self.sex
@@ -84,7 +77,6 @@ class Cows:
         else:
             print(name, 'молока не дает, зато создает настроение.')
 
-
     def identify_sound (self, given_sound):
          name = self.name
          animal = self.animal
@@ -92,18 +84,13 @@ class Cows:
          if given_sound == sound:
              print(sound, ' - это', animal)
          else:
-             print('Возможно, так говорил Заратустра, но не животные на ферме.')
-
-cow1 = Cows('Манька','f', 800)
-cow1.milk(10)
+             print('Возможно, так говорил Заратустра, но не корова.')
 
 
 class Sheep:
-    pass
 
-    def __init__(self, name, sex, weight, sound='бе-бе-бе', animal='овца', month_wool_benefit=10, daily_norm_food=2):
+    def __init__(self, name, weight, sound='бе-бе-бе', animal='овца', month_wool_benefit=10, daily_norm_food=2):
         self.name = name
-        self.sex = sex
         self.weight = weight
         self.sound = sound
         self.animal = animal
@@ -119,7 +106,6 @@ class Sheep:
          else:
              print(name, 'не хочет переедать. Животное сегодня больше не кормить.')
 
-
     def cut_wool(self, taken_wool):
         name = self.name
         wool = 0
@@ -130,7 +116,6 @@ class Sheep:
         else:
             print(name, 'в этом месяце больше не стричь, и так животное уже лысое.')
 
-
     def identify_sound (self, given_sound):
          name = self.name
          animal = self.animal
@@ -138,14 +123,10 @@ class Sheep:
          if given_sound == sound:
              print(sound, ' - это', animal)
          else:
-             print('Возможно, так говорил Заратустра, но не животные на ферме.')
-
-sheep1 = Sheep('Барашек', 'f', 100)
-sheep1.cut_wool(11)
+             print('Возможно, так говорил Заратустра, но не овца.')
 
 
-class Hens:
-    pass
+class Hens():
 
     def __init__(self, name, sex, weight, sound='куд-куд-кудах', animal='курица', daily_eggs_benefit=1, daily_norm_food=0.4):
         self.name = name
@@ -155,7 +136,6 @@ class Hens:
         self.animal = animal
         self.daily_eggs_benefit = daily_eggs_benefit
         self.daily_norm_food = daily_norm_food
-
 
     def feed(self, given_food):
          name = self.name
@@ -180,7 +160,6 @@ class Hens:
         else:
             print(name, 'яиц не дает, зато окрас красивый.')
 
-
     def identify_sound (self, given_sound):
          name = self.name
          animal = self.animal
@@ -188,12 +167,10 @@ class Hens:
          if given_sound == sound:
              print(sound, ' - это', animal)
          else:
-             print('Возможно, так говорил Заратустра, но не животные на ферме.')
-
+             print('Возможно, так говорил Заратустра, но не курица.')
 
 
 class Goats:
-    pass
 
     def __init__(self, name, sex, weight, sound='ме-ме-ме', animal='коза', daily_milk_benefit=5, daily_norm_food=2):
         self.name = name
@@ -204,7 +181,6 @@ class Goats:
         self.daily_milk_benefit = daily_milk_benefit
         self.daily_norm_food = daily_norm_food
 
-
     def feed(self, given_food):
          name = self.name
          daily_norm_food = self.daily_norm_food
@@ -213,7 +189,6 @@ class Goats:
              print(name, 'хочет еще разок сегодня поесть')
          else:
              print(name, 'не хочет переедать. Животное сегодня больше не кормить.')
-
 
     def milk(self, taken_milk):
         name = self.name
@@ -229,8 +204,6 @@ class Goats:
         else:
             print(name, 'молока не дает, зато создает настроение.')
 
-
-
     def identify_sound (self, given_sound):
          name = self.name
          animal = self.animal
@@ -238,19 +211,9 @@ class Goats:
          if given_sound == sound:
              print(sound, ' - это', animal)
          else:
-             print('Возможно, так говорил Заратустра, но не животные на ферме.')
-
-
-
-goat1 = Goats('Рога', 'f', 200)
-goat2 = Goats('Копыта', 'm', 240)
-
-goat2.milk(6)
-
-
+             print('Возможно, так говорил Заратустра, но не коза.')
 
 class Ducks:
-    pass
 
     def __init__(self, name, sex, weight, sound='кря-кря-кря', animal='утка', daily_eggs_benefit=1, daily_norm_food=0.4):
          self.name = name
@@ -284,7 +247,6 @@ class Ducks:
         else:
             print(name, 'яиц не дает, зато окрас красивый.')
 
-
     def identify_sound (self, given_sound):
          name = self.name
          animal = self.animal
@@ -292,27 +254,32 @@ class Ducks:
          if given_sound == sound:
              print(sound, ' - это', animal)
          else:
-             print('Возможно, так говорил Заратустра, но не животные на ферме.')
+             print('Возможно, так говорил Заратустра, но не утка.')
 
+
+goose1 = Geese('Серый', 'm',  3)
+goose2 = Geese('Белый', 'f',  4)
+cow1 = Cows('Манька', 'f',  800)
+cow2 =Cows('Бычок', 'm', 1100)
+sheep1 = Sheep('Барашек', 100)
+sheep2 = Sheep('Кудрявый', 120)
+hen1 = Hens('Ко-Ко', 'f', 3)
+hen2 = Hens('Кукареку', 'm', 5)
+goat1 = Goats('Рога', 'm', 110)
+goat2 = Goats('Копыта', 'f', 100)
 duck1 = Ducks('Кряква', 'f', 3)
-duck2 = Ducks('Fooo','m', 3)
-duck1.take_eggs(2)
+duck2 = Ducks('Дональд', 'm', 3)
+
+goose1.feed(0.4)
+goose2.feed(0.5)
+goose1.identify_sound('га-га-га')
+goose2.identify_sound('кря')
 
 
 
 
 
 
-#goose1 = Geese('Серый', 3)
-#goose2 = Geese('Белый', 4)
-#cow1 = Cows('Манька', 800)
-#sheep1 = Sheep('Барашек', 100)
-#sheep2 = Sheep('Кудрявый', 120)
-#hen1 = Hens('Ко-Ко', 2)
-#hen2 = Hens('Кукареку', 3)
-#goat1 = Goats('Рога', 200)
-#goat2 = Goats('Копыта', 240)
-#duck1 = Ducks('Кряква', 'f', 3)
-#duck2 = Ducks('F", 'm', 3)
+
 
 
