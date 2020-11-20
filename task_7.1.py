@@ -3,8 +3,8 @@ class Track:
         self.name = name
         self.duration = duration
 
-    def show(self):
-        return f'<{self.name} - {self.duration}>'
+    def __str__(self):
+        return f'{self.name} - {self.duration} min'
 
     def set_name(self, name):
         self.name = name
@@ -20,7 +20,7 @@ class Album:
         self.tracks = []
 
     def get_tracks(self):
-        return [track.show() for track in self.tracks]
+        return [track.__str__() for track in self.tracks]
 
     def get_duration(self):
         return sum([track.duration for track in self.tracks])
@@ -29,6 +29,13 @@ class Album:
         if not isinstance(track, Track):
             raise NotImplementedError('Can not add this object to track list')
         self.tracks.append(track)
+
+    def __str__(self):
+        print(f"""Name group: {album.group}
+Name album: {album.name}
+Tracks:""")
+        for track in (album.get_tracks()):
+            print(f'       {track}')
 
 albums = []
 album = Album('50 Shades of Black', 'Covacs')
@@ -50,3 +57,5 @@ for album in albums:
     print(f'Общая длительность альбома: {album.get_duration()} минут\n')
 
 
+print(track[1].__str__())
+album.__str__()
