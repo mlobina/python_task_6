@@ -13,6 +13,18 @@ class Track:
         self.duration = duration
 
 
+    def __gt__(self, other):
+        if not isinstance(other, Track):
+            raise NotImplementedError('Can not be compared with track')
+        print(self.duration > other.duration)
+
+    def __eq__(self, other):
+        if not isinstance(other, Track):
+            raise NotImplementedError('Can not be compared with track')
+        print(self.duration == other.duration)
+
+
+
 class Album:
     def __init__(self, name='', group=''):
         self.name = name
@@ -59,3 +71,9 @@ for album in albums:
 
 print(track[1].__str__())
 album.__str__()
+
+track1 = Track('Yesterday', 5)
+track2 = Track('All you need is love', 6)
+track3 = Track('Let it be', 5)
+track2 > track1
+track3 == track1
