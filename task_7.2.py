@@ -12,9 +12,6 @@ class Animals:
         self.daily_norm_food = daily_norm_food
 
 
-    def __str__(self):
-        return f'{self.animal} {self.name}'
-
     def identify_sound(self, given_sound):
         name = self.name
         animal = self.animal
@@ -29,44 +26,109 @@ class Animals:
          daily_norm_food = self.daily_norm_food
          if given_food <= daily_norm_food:
              self.weight += given_food
-             print(name, 'хочет еще разок сегодня поесть')
+             print(name, 'хочет еще разок сегодня поесть.')
          else:
              print(name, 'не хочет переедать. Животное сегодня больше не кормить.')
 
+    def get_benefits(self):
+        animal = self.animal
+        print(animal, 'на ферме приносит разную пользу')
+
+
     def slaughter(self):
+        animal = self.animal
         meat = self.weight
-        print(f'Примерно {meat} свежего мяса')
+        print(animal, '- это примерно', meat, 'кг свежего мяса, если хорошо покормили')
 
-
+    def act(self):
+        self.identify_sound('га-га-га')
+        self.feed(2)
+        self.get_benefits()
+        self.slaughter()
 
 
 class Poultry(Animals):
     pass
 
-    def __init__(self, name, sex, weight, sound='', animal='', daily_norm_food=0, daily_eggs_benefit=0, month_plumage=0):
-        super().__init__(self, name, weight, sound, animal, daily_norm_food)
+    def __init__(self, name, sex, weight, sound, animal, daily_norm_food, daily_eggs_benefit=0, month_plumage=0):
+        super().__init__(name, sex, weight, sound, animal, daily_norm_food)
         self.daily_eggs_benefit = daily_eggs_benefit
         self.month_plumage = month_plumage
 
     def take_plumage(self, taken_plumage):
+        name = self.name
         month_plumage = self.month_plumage
         plumage = 0
         if taken_plumage <= month_plumage:
             plumage += taken_plumage
-            print(f'{self.name}, 'дал(а) {plumage} кг пуха')
+            print(f'{name} дал(а) {plumage} кг пуха')
         else:
-            print(f'{self.name}'- в этом месяце больше не обдирать')
+            print(f'{name} - в этом месяце больше не обдирать')
 
+
+    def take_eggs(self, taken_eggs):
+        name = self.name
+        sex = self.sex
+        eggs = 0
+        daily_eggs_benefit = self.daily_eggs_benefit
+        if sex != 'm':
+            if taken_eggs <= daily_eggs_benefit:
+                eggs += taken_eggs
+                print(f'{name} дала {eggs} шт яиц')
+            else:
+                 print('Сегодня яиц больше не будет, животное и так отлично постаралось!')
+        else:
+                 print(f'{name} яиц не дает, зато окрас красивый.')
+
+    def get_benefits(self):
+        super().get_benefits()
+        self.take_plumage(1)
+        self.take_eggs(1)
+
+
+
+class Geese(Poultry):
+
+    animal_list = []
+
+    def __init__(self, name, sex, weight, sound='га-га-га', animal='гусь', daily_norm_food=1, daily_eggs_benefit=1,
+                 month_plumage=2):
+        super().__init__(name, sex, weight, sound, animal, daily_norm_food, daily_eggs_benefit, month_plumage)
+        Geese.animal_list.append(self)
+        Animals.animal_list.append(self)
+
+class Hens(Poultry):
+
+    animal_list = []
+
+    def __init__(self, name, sex, weight, sound='куд-куд-кудах', animal='курица', daily_norm_food=1,
+                 daily_eggs_benefit=1, month_plumage=1):
+        super().__init__(name, sex, weight, sound, animal, daily_norm_food, daily_eggs_benefit, month_plumage)
+        Hens.animal_list.append(self)
+        Animals.animal_list.append(self)
+
+class Ducks(Poultry):
+
+    animal_list = []
+
+    def __init__(self, name, sex, weight, sound='кря-кря-кря', animal='утка', daily_norm_food=1,
+                 daily_eggs_benefit=1, month_plumage=2):
+        super().__init__(name, sex, weight, sound, animal, daily_norm_food, daily_eggs_benefit, month_plumage)
+        Ducks.animal_list.append(self)
+        Animals.animal_list.append(self)
 
 
 class Mammals(Animals):
     pass
 
-    def __init__(self, name, sex, weight, sound='', animal='', daily_norm_food=0, daily_milk_benefit=0):
-        super().__init__(self, name, weight, sound, animal, daily_norm_food)
+    def __init__(self, name, sex, weight, sound, animal, daily_norm_food, daily_milk_benefit=0):
+        super().__init__(name, sex, weight, sound, animal, daily_norm_food)
         self.daily_milk_benefit = daily_milk_benefit
 
+
     def milk(self, taken_milk):
+        name = self.name
+        sex = self.sex
         milk = 0
         daily_milk_benefit = self.daily_milk_benefit
         if sex != 'm':
@@ -78,171 +140,62 @@ class Mammals(Animals):
         else:
             print(f'{self.name} молока не дает, зато создает настроение.')
 
+    def get_benefits(self):
+        super().get_benefits()
+        self.milk(1)
 
-class Geese(Poultry):
+
+class Goats(Mammals):
+
     animal_list = []
 
-    def __init__(self, name, sex, weight, sound='га-га-га', animal='гусь', daily_norm_food=0.4, daily_eggs_benefit=1, month_plumage=1):
-        super().__init__(self, name, sex, weight, sound, animal, daily_norm_food, daily_eggs_benefit, month_plumage)
-        Geese.animal_list.append(self)
-
-class Hens(Poultry):
-    animal_list = []
-
-    def __init__(self, name, sex, weight, sound='куд-куд-кудах', animal='курица', daily_eggs_benefit=1, month_plumage=1,
-                 daily_norm_food=0.4):
-        super().__init__(self, name, sex, weight, sound, animal, daily_norm_food, daily_eggs_benefit, month_plumage)
-        Hens.animal_list.append(self)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def __init__(self, name, sex, weight, sound='ме-ме-ме', animal='коза', daily_norm_food=3, daily_milk_benefit=4):
+        super().__init__(name, sex, weight, sound, animal, daily_norm_food, daily_milk_benefit)
+        Goats.animal_list.append(self)
+        Animals.animal_list.append(self)
 
 
 class Cows(Mammals):
+
     animal_list = []
 
-    def __init__(self, name, sex, weight, sound='му-му-му', animal='корова', daily_milk_benefit=15, daily_norm_food=5):
-        super().__init__(self, name, sex, weight, sound, animal, daily_norm_food, daily_milk_benefit)
+    def __init__(self, name, sex, weight, sound='му-му-му', animal='корова', daily_norm_food=7, daily_milk_benefit=15):
+        super().__init__(name, sex, weight, sound, animal, daily_norm_food, daily_milk_benefit)
         Cows.animal_list.append(self)
-
+        Animals.animal_list.append(self)
 
 class Sheep(Mammals):
+
     animal_list = []
 
-    def __init__(self, name, weight, sound='бе-бе-бе', animal='овца', month_wool_benefit=10, daily_norm_food=2):
-        super().__init__(self, name, sex, weight, sound, animal, daily_norm_food)
+    def __init__(self, name, sex, weight, sound='бе-бе-бе', animal='овца', daily_norm_food=4, month_wool_benefit=15):
+        super().__init__(name, sex, weight, sound, animal, daily_norm_food)
         self.month_wool_benefit = month_wool_benefit
         Sheep.animal_list.append(self)
-
+        Animals.animal_list.append(self)
 
     def cut_wool(self, taken_wool):
-        name = self.name
         wool = 0
         month_wool_benefit = self.month_wool_benefit
         if taken_wool <= month_wool_benefit:
             wool += taken_wool
-            print(name, 'дал(а)', str(wool), 'кг шерсти')
+            print(f'{self.name} дал(а) {wool} кг шерсти')
         else:
-            print(name, '- в этом месяце больше не стричь, и так животное уже лысое.')
+            print(f'{self.name}- в этом месяце больше не стричь, и так животное уже лысое.')
+
+    def get_benefits(self):
+        self.cut_wool(1)
 
 
 
-
-
-
-
-
-
-
-class Goats:
-    animal_list = []
-
-    def __init__(self, name, sex, weight, sound='ме-ме-ме', animal='коза', daily_milk_benefit=5, daily_norm_food=2):
-        Goats.animal_list.append(self)
-        self.name = name
-        self.sex = sex
-        self.weight = weight
-        self.sound = sound
-        self.animal = animal
-        self.daily_milk_benefit = daily_milk_benefit
-        self.daily_norm_food = daily_norm_food
-
-    def feed(self, given_food):
-         name = self.name
-         daily_norm_food = self.daily_norm_food
-         if given_food <= daily_norm_food:
-             self.weight += given_food
-             print(name, 'хочет еще разок сегодня поесть')
-         else:
-             print(name, 'не хочет переедать. Животное сегодня больше не кормить.')
-
-    def milk(self, taken_milk):
-        name = self.name
-        sex = self.sex
-        milk = 0
-        daily_milk_benefit = self.daily_milk_benefit
-        if sex != 'm':
-            if taken_milk <= daily_milk_benefit:
-                milk += taken_milk
-                print(name, 'дала', str(milk), 'л молока')
-            else:
-                print('Удой животного на сегодня закончен.')
-        else:
-            print(name, 'молока не дает, зато создает настроение.')
-
-    def identify_sound (self, given_sound):
-         name = self.name
-         animal = self.animal
-         sound = self.sound
-         if given_sound == sound:
-             print(sound, ' - это', animal)
-         else:
-             print('Возможно, так говорил Заратустра, но не коза.')
-
-class Ducks:
-    animal_list = []
-
-    def __init__(self, name, sex, weight, sound='кря-кря-кря', animal='утка', daily_eggs_benefit=1,
-                 daily_norm_food=0.4):
-         Ducks.animal_list.append(self)
-         self.name = name
-         self.sex = sex
-         self.weight = weight
-         self.sound = sound
-         self.animal = animal
-         self.daily_eggs_benefit = daily_eggs_benefit
-         self.daily_norm_food = daily_norm_food
-
-    def feed(self, given_food):
-         name = self.name
-         daily_norm_food = self.daily_norm_food
-         if given_food <= daily_norm_food:
-             self.weight += given_food
-             print(name, 'хочет еще разок сегодня поесть')
-         else:
-             print(name, 'не хочет переедать. Животное сегодня больше не кормить.')
-
-    def take_eggs(self, taken_eggs):
-        name = self.name
-        sex = self.sex
-        eggs = 0
-        daily_eggs_benefit = self.daily_eggs_benefit
-        if sex != 'm':
-            if taken_eggs <= daily_eggs_benefit:
-                eggs += taken_eggs
-                print(name, 'дала', str(eggs), 'шт яиц')
-            else:
-                print('Сегодня яиц больше не будет, животное и так отлично постаралось!')
-        else:
-            print(name, 'яиц не дает, зато окрас красивый.')
-
-    def identify_sound (self, given_sound):
-         name = self.name
-         animal = self.animal
-         sound = self.sound
-         if given_sound == sound:
-             print(sound, ' - это', animal)
-         else:
-             print('Возможно, так говорил Заратустра, но не утка.')
 
 
 goose1 = Geese('Серый', 'm',  3)
 goose2 = Geese('Белая', 'f',  4)
 cow1 = Cows('Манька', 'f',  800)
 cow2 =Cows('Бычок', 'm', 1100)
-sheep1 = Sheep('Барашек', 100)
-sheep2 = Sheep('Кудрявый', 120)
+sheep1 = Sheep('Барашек', 'm', 100)
+sheep2 = Sheep('Кудрявый', 'm', 120)
 hen1 = Hens('Ко-Ко', 'f', 3)
 hen2 = Hens('Кукареку', 'm', 5)
 goat1 = Goats('Рога', 'm', 110)
@@ -250,47 +203,8 @@ goat2 = Goats('Копыта', 'f', 100)
 duck1 = Ducks('Кряква', 'f', 3)
 duck2 = Ducks('Дональд', 'm', 7)
 
-goose1.feed(0.4)
-goose2.feed(0.5)
-goose1.identify_sound('га-га-га')
-goose2.identify_sound('кря')
-goose1.take_eggs(1)
-goose2.take_eggs(0)
 
-cow1.feed(4)
-cow2.feed(6)
-cow1.identify_sound('му-му-му')
-cow2.identify_sound('ббрр')
-cow1.milk(15)
-cow2.milk(0)
 
-sheep1.feed(1)
-sheep2.feed(3)
-sheep1.identify_sound('бе-бе-бе')
-sheep2.identify_sound('хрю')
-sheep1.cut_wool(11)
-sheep2.cut_wool(8)
-
-hen1.feed(0.4)
-hen2.feed(0.5)
-hen1.identify_sound('куд-куд-кудах')
-hen2.identify_sound('кря')
-hen1.take_eggs(1)
-hen2.take_eggs(0)
-
-goat1.feed(4)
-goat2.feed(2)
-goat1.identify_sound('ме-ме-ме')
-goat2.identify_sound('пшшшш')
-goat1.milk(5)
-goat2.milk(4)
-
-duck1.feed(0.4)
-duck2.feed(0.5)
-duck1.identify_sound('га-га-га')
-duck2.identify_sound('кря-кря-кря')
-duck1.take_eggs(1)
-duck2.take_eggs(0)
 
 weight_geese = sum((x.weight for x in Geese.animal_list))
 print('Общий вес всех гусей - ', weight_geese, 'кг')
@@ -353,5 +267,6 @@ for x in Ducks.animal_list:
         break
 
 
-
+for x in Animals.animal_list:
+    x.act()
 
